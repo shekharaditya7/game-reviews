@@ -1,7 +1,8 @@
 import React from "react";
+// import useFetch from "./../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
-import useFetch from "../hooks/useFetch";
+import ReactMarkdown from "react-markdown";
 
 const REVIEWS = gql`
   query GetReviews {
@@ -45,7 +46,9 @@ export default function HomePage({}) {
             {categories.data?.map(({ attributes: { name }, id }) => (
               <small key={id}>{name}</small>
             ))}
-            <p>{body.substring(0, 200)}...</p>
+            <ReactMarkdown
+              children={body.substring(0, 200) + "...."}
+            ></ReactMarkdown>
 
             <Link to={`/details/${id}`}>Read More</Link>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
+import ReactMarkdown from "react-markdown";
 
 const CATEGORY = gql`
   query GetCategory($id: ID!) {
@@ -51,7 +52,9 @@ export default function Category({}) {
               <small key={id}>{name}</small>
             ))}
 
-            <p>{body.substring(0, 200)}...</p>
+            <ReactMarkdown
+              children={body.substring(0, 200) + "...."}
+            ></ReactMarkdown>
 
             <Link to={`/details/${id}`}>Read More</Link>
           </div>
